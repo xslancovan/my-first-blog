@@ -1,22 +1,13 @@
-<html>
-    <head>
-        <title>Natalia's blog</title>
-    </head>
-    <body>
-        <div>
-	    <h2>Natkin skvely blog</h2>
-	</div>
+{% extends 'blog/base.html' %}
 
-	<div>
- 	    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed cursus nulla. Suspendisse maximus consectetur tempus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec eu vestibulum ligula, ut maximus leo. Praesent vel posuere ipsum. Cras rutrum ultricies sollicitudin. Sed sed est vel risus consequat vestibulum id non justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis sagittis, sapien euismod mattis vestibulum, sapien libero interdum nulla, gravida pharetra massa purus eu odio. Vestibulum id ligula sed justo pulvinar malesuada ultricies sed libero. Morbi non justo enim. Fusce fermentum mi venenatis lorem luctus, a molestie ante vestibulum. Cras nec est vel est scelerisque gravida. Praesent in massa nec magna imperdiet semper id maximus massa. Ut varius nunc quis enim dictum, et euismod eros pharetra. </p>
-	</div>
-
-   {% for post in posts %} 	
-	 <div>
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaks }}</p>
-    </div>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaks }}</p>
+        </div>
     {% endfor %}
-    </body>
-</html>
+{% endblock content %}
